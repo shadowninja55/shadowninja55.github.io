@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>shadow</title>
+
+    <script src="https://kit.fontawesome.com/e44edea9e3.js" crossorigin="anonymous"></script>
+    <script src="prism.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="has-navbar-fixed-top">
+    <!-- NAVBAR BEGIN -->
+    <nav class="navbar is-link is-fixed-top pr-2">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <div class="navbar-item has-dropdown is-hoverable p-2">
+            <a class="navbar-link is-size-4">
+              links
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="https://github.com/shadowninja55">
+                github
+              </a>
+              <a class="navbar-item" href="https://youtube.com/channel/UCQ24tnV-qDJT8oVWfb815mA">
+                youtube
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-end">
+          <a class="navbar-item is-size-5">
+            home
+          </a>
+          <a class="navbar-item is-size-5">
+            about
+          </a>
+          <a class="navbar-item is-size-5">
+            contact
+          </a>
+        </div>
+      </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!-- INTRODUCTION BEGIN -->
+    <section class="section has-background-white-ter">
+      <div class="container">
+        <nav class="level">
+          <div class="level-left">
+            <div class="level-item is-inline-block">
+              <p class="title is-1">
+                hey, i'm shadow 👋
+              </p><br>
+              <p class="subtitle is-3">
+                if you'd like a mediocre developer, <br>
+                feel free to reach out to me on <br>
+                discord at <span class="has-text-link">shadow.#0001</span>
+              </p>
+            </div>
+          </div>
+          <div class="level-item">
+            <div class="level-item is-inline-block code-blocks">
+              <pre class="language-v is-size-4"><code class="pt-4 pb-4">fn main() {
+  println("i like to use v...")
+}</code></pre>
+              <pre class="language-nim is-size-4"><code class="pt-4 pb-4">echo "nim..."</code></pre>
+              <pre class="language-py is-size-4"><code class="pt-4 pb-4">print("and python!")</code></pre>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </section>
+    <!-- INTRODUCTION END -->
+
+    <!-- DIVIDER BEGIN -->
+    <section class="section is-medium">
+      <div class="has-text-centered">
+        <h1 class="title is-1">my projects</h1>
+        <span class="icon is-size-2 has-text-link clickable"
+        onclick="document.getElementById('projects').scrollIntoView()">
+          <i class="fas fa-chevron-down"></i>
+        </span>
+      </div>
+    </section>
+    <!-- DIVIDER END -->
+
+    <!-- PROJECTS BEGIN -->
+    <section id="projects" class="section is-medium has-background-white-ter">
+      <div class="columns is-centered">
+        <div class="column is-one-fifth">
+          <div class="card">
+            <header class="card-header has-background-link">
+              <p class="card-header-title has-text-white">
+                vbin
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                An open-source pastebin for the V programming language.
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a class="card-footer-item has-background-white-ter" href="https://github.com/shadowninja55/vbin">
+                github
+              </a>
+              <div class="card-footer-item has-background-white-ter has-text-grey">
+                website (soon)
+              </div>
+            </footer>
+          </div>
+        </div>
+        <div class="column is-one-fifth"></div>
+        <div class="column is-one-fifth">
+          <div class="card">
+            <header class="card-header has-background-link">
+              <p class="card-header-title has-text-white">
+                vidi
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                A realtime MIDI library for handling inputs made in V.
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a class="card-footer-item has-background-white-ter" href="https://github.com/shadowninja55/vidi">
+                github
+              </a>
+            </footer>
+          </div>
+        </div>
+      </nav>
+    </section>
+  </body>
+</html>
