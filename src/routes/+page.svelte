@@ -15,12 +15,12 @@
     FOG({
       el,
       THREE,
-      highlightColor: 0x23f52,
-      midtoneColor: 0x2d06ac,
-      lowlightColor: 0x110078,
-      baseColor: 0x000000,
+      highlightColor: 0x27272, // 0x23f52,
+      midtoneColor: 0x7a02b3, // 0x2d06ac,
+      lowlightColor: 0x1050, // 0x110078,
+      baseColor: 0x0,
       blurFactor: 0.6,
-      speed: 0.5,
+      speed: 0.25,
       zoom: 0.5,
     });
   };
