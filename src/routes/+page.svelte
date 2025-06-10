@@ -37,7 +37,7 @@
   const random = (n: number): Star[] => [...Array(n)].map(_ => ({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    r: Math.random() * 0.75 + 0.25,
+    r: Math.random() * 0.75 + 0.5,
     vx: Math.random() * 0.15 - 0.075,
     vy: Math.random() * 0.15 - 0.075,
   }));
@@ -46,13 +46,15 @@
     canvas = el as HTMLCanvasElement;
     resize();
     const ctx = canvas.getContext("2d")!;
+    ctx.fillStyle = "white";
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 0.5;
     let stars = random(desired());
 
     const frame = () => {
       requestAnimationFrame(frame);
 
       // clear
-      ctx.fillStyle = "white";
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // count
@@ -65,6 +67,15 @@
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
         ctx.fill();
+
+        if (star.r > 1.2) {
+          ctx.beginPath();
+          ctx.moveTo(star.x - 4, star.y);
+          ctx.lineTo(star.x + 4, star.y);
+          ctx.moveTo(star.x, star.y - 4);
+          ctx.lineTo(star.x, star.y + 4);
+          ctx.stroke();
+        }
 
         // bounce
         if (star.x < 0 && star.vx < 0 || star.x > canvas.width && star.vx > 0) 
