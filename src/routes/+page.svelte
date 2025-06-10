@@ -11,13 +11,13 @@
     vy: number;
   };
 
-  const vanta: Attachment = (el) => {
+  const nebulae: Attachment = (el) => {
     FOG({
       el,
       THREE,
-      highlightColor: 0x27272, // 0x23f52,
-      midtoneColor: 0x7a02b3, // 0x2d06ac,
-      lowlightColor: 0x1050, // 0x110078,
+      highlightColor: 0x27272,
+      midtoneColor: 0x7a02b3,
+      lowlightColor: 0x1050,
       baseColor: 0x0,
       blurFactor: 0.6,
       speed: 0.25,
@@ -25,35 +25,54 @@
     });
   };
 
-  const stars: Attachment = (el) => {
-    const canvas = el as HTMLCanvasElement;
+  let canvas: HTMLCanvasElement;
+
+  const resize = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    const ctx = canvas.getContext("2d")!;
+  };
 
-    let stars = [];
-    for (let i = 0; i < Math.sqrt(canvas.width * canvas.height) / 2; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 0.75 + 0.25,
-        vx: Math.random() * 0.1 - 0.05,
-        vy: Math.random() * 0.1 - 0.05,
-      });
-    }
+  const desired = (): number => Math.round(Math.sqrt(canvas.width * canvas.height) / 2);
+
+  const random = (n: number): Star[] => [...Array(n)].map(_ => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 0.75 + 0.25,
+    vx: Math.random() * 0.15 - 0.075,
+    vy: Math.random() * 0.15 - 0.075,
+  }));
+
+  const galaxy: Attachment = (el) => {
+    canvas = el as HTMLCanvasElement;
+    resize();
+    const ctx = canvas.getContext("2d")!;
+    let stars = random(desired());
 
     const frame = () => {
       requestAnimationFrame(frame);
+
+      // clear
       ctx.fillStyle = "white";
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // count
+      if (stars.length !== desired()) {
+        stars = random(desired());
+      }
+
       for (let star of stars) {
+        // draw
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
         ctx.fill();
+
+        // bounce
         if (star.x < 0 && star.vx < 0 || star.x > canvas.width && star.vx > 0) 
           star.vx *= -1; 
         if (star.y < 0 && star.vy < 0 || star.y > canvas.height && star.vy > 0)
           star.vy *= -1; 
+
+        // move
         star.x += star.vx;
         star.y += star.vy;
       }
@@ -68,11 +87,13 @@
   </title>
 </svelte:head>
 
+<svelte:window onresize={resize}/>
+
 <main 
   class="fixed inset-0 bg-black overflow-hidden flex justify-center items-center" 
-  {@attach vanta}
+  {@attach nebulae}
 >
-  <canvas class="absolute inset-0" {@attach stars}></canvas>
+  <canvas class="absolute inset-0" {@attach galaxy}></canvas>
 
   <a 
     href="https://github.com/shadowninja55/"
